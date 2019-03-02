@@ -1,43 +1,67 @@
 {
    "rabbit_version":"3.7.12",
    "users":[
-      {  
+      {
+         "name":"nqoptaproducer",
+         "password_hash":"wDyQUGCxWjYWCEsz+j78yY6kMuasjb035j5h97C/mdPVkGw/",
+         "hashing_algorithm":"rabbit_password_hashing_sha256",
+         "tags":""
+      },
+      {
+         "name":"sddpadmin",
+         "password_hash":"S3AJg+w12XZYEUM+BKl5gPwBZVU=",
+         "hashing_algorithm":"rabbit_password_hashing_sha256",
+         "tags":""
+      },
+      {
          "name":"admin",
          "password_hash":"qoToqn8xe5gv3lUxLOOrI8fVM7xkVqINEbb2ebjRvgRP73yt",
          "hashing_algorithm":"rabbit_password_hashing_sha256",
          "tags":"administrator"
       },
       {
-         "name":"nqoptaproducer",
-         "password_hash":"cwJc38agX9zb4SEJC0kPh20DV00=",
-         "tags":""
-      },
-      {
-         "name":"sddpadmin",
-         "password_hash":"S3AJg+w12XZYEUM+BKl5gPwBZVU=",
-         "tags":""
-      },
-      {
          "name":"feedproducer",
          "password_hash":"nhmjgHIAX6TV8BiCMS8BTqe7QcY=",
+         "hashing_algorithm":"rabbit_password_hashing_sha256",
          "tags":""
       }
    ],
    "vhosts":[
       {
-         "name":"/"
+         "name":"/opta-messages/"
       },
       {
          "name":"/runningball/"
       },
       {
-         "name":"/opta-messages/"
+         "name":"/"
       },
       {
          "name":"/sddp/"
       }
    ],
    "permissions":[
+      {
+         "user":"nqoptaproducer",
+         "vhost":"/runningball/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
+      {
+         "user":"sddpadmin",
+         "vhost":"/opta-messages/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
+      {
+         "user":"nqoptaproducer",
+         "vhost":"/opta-messages/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
       {
          "user":"feedproducer",
          "vhost":"/sddp/",
@@ -47,27 +71,6 @@
       },
       {
          "user":"sddpadmin",
-         "vhost":"/opta-messages/",
-         "configure":".*",
-         "write":".*",
-         "read":".*"
-      },
-      {
-         "user":"sddpadmin",
-         "vhost":"/runningball/",
-         "configure":".*",
-         "write":".*",
-         "read":".*"
-      },
-      {
-         "user":"nqoptaproducer",
-         "vhost":"/opta-messages/",
-         "configure":".*",
-         "write":".*",
-         "read":".*"
-      },
-      {
-         "user":"nqoptaproducer",
          "vhost":"/runningball/",
          "configure":".*",
          "write":".*",
@@ -79,26 +82,42 @@
          "configure":".*",
          "write":".*",
          "read":".*"
+      },
+      {
+         "user":"admin",
+         "vhost":"/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
       }
+   ],
+   "topic_permissions":[
+
    ],
    "parameters":[
 
+   ],
+   "global_parameters":[
+      {
+         "name":"cluster_name",
+         "value":"rabbit@rabbitmq-local"
+      }
    ],
    "policies":[
 
    ],
    "queues":[
-     
+
    ],
    "exchanges":[
-      {  
+      {
          "name":"exc.delta.feed",
          "vhost":"/opta-messages/",
          "type":"x-consistent-hash",
          "durable":true,
          "auto_delete":false,
          "internal":false,
-         "arguments":{  
+         "arguments":{
 
          }
       }
