@@ -11,6 +11,5 @@ services:
   volumes:
    - $PWD/storage/rabbitmq-local:/var/lib/rabbitmq
    - $PWD/rabbit_enabled_plugins:/etc/rabbitmq/enabled_plugins
-  environment:
-   - RABBITMQ_DEFAULT_USER=admin
-   - RABBITMQ_DEFAULT_PASS=admin
+   - $PWD/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+   - $PWD/definitions.json:/etc/rabbitmq/definitions.json
