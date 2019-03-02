@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+ rabbitmq-local:
+  image: rabbitmq:3
+  container_name: rabbitmq-local
+  hostname: rabbitmq-local
+  ports:
+   - "15672:15672"
+   - '5672:5672'
+  volumes:
+   - $PWD/storage/rabbitmq-local:/var/lib/rabbitmq
+   - $PWD/rabbit_enabled_plugins:/etc/rabbitmq/enabled_plugins
+  environment:
+   - RABBITMQ_DEFAULT_USER=admin
+   - RABBITMQ_DEFAULT_PASS=admin
