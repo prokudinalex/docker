@@ -42,7 +42,28 @@
    ],
    "permissions":[
       {
+         "user":"admin",
+         "vhost":"/sddp/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
+      {
+         "user":"admin",
+         "vhost":"/opta-messages/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
+      {
          "user":"nqoptaproducer",
+         "vhost":"/runningball/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
+      {
+         "user":"admin",
          "vhost":"/runningball/",
          "configure":".*",
          "write":".*",
@@ -107,7 +128,15 @@
 
    ],
    "queues":[
+      {
+         "name":"test",
+         "vhost":"/opta-messages/",
+         "durable":true,
+         "auto_delete":false,
+         "arguments":{
 
+         }
+      }
    ],
    "exchanges":[
       {
@@ -123,6 +152,15 @@
       }
    ],
    "bindings":[
+      {
+         "source":"exc.delta.feed",
+         "vhost":"/opta-messages/",
+         "destination":"test",
+         "destination_type":"queue",
+         "routing_key":"1",
+         "arguments":{
 
+         }
+      }
    ]
 }
