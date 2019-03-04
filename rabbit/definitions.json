@@ -42,6 +42,13 @@
    ],
    "permissions":[
       {
+         "user":"nqoptaproducer",
+         "vhost":"/sddp/",
+         "configure":".*",
+         "write":".*",
+         "read":".*"
+      },
+      {
          "user":"admin",
          "vhost":"/sddp/",
          "configure":".*",
@@ -131,7 +138,16 @@
       {
          "name":"test",
          "vhost":"/opta-messages/",
-         "durable":true,
+         "durable":false,
+         "auto_delete":false,
+         "arguments":{
+
+         }
+      },
+      {
+         "name":"test_sddp",
+         "vhost":"/sddp/",
+         "durable":false,
          "auto_delete":false,
          "arguments":{
 
@@ -149,6 +165,17 @@
          "arguments":{
 
          }
+      },
+      {
+         "name":"exc.sddp.bridge",
+         "vhost":"/sddp/",
+         "type":"topic",
+         "durable":true,
+         "auto_delete":false,
+         "internal":false,
+         "arguments":{
+
+         }
       }
    ],
    "bindings":[
@@ -158,6 +185,16 @@
          "destination":"test",
          "destination_type":"queue",
          "routing_key":"1",
+         "arguments":{
+
+         }
+      },
+      {
+         "source":"exc.sddp.bridge",
+         "vhost":"/sddp/",
+         "destination":"test_sddp",
+         "destination_type":"queue",
+         "routing_key":"*",
          "arguments":{
 
          }
