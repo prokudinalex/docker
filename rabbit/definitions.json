@@ -9,7 +9,7 @@
       },
       {
          "name":"sddpadmin",
-         "password_hash":"S3AJg+w12XZYEUM+BKl5gPwBZVU=",
+         "password_hash":"AqtkCPqBMzIsh4GVpHQA3/qUPZG9sJWjf336P0+rEPJI1fzM",
          "hashing_algorithm":"rabbit_password_hashing_sha256",
          "tags":""
       },
@@ -135,37 +135,8 @@
 
    ],
    "queues":[
-      {
-         "name":"test",
-         "vhost":"/opta-messages/",
-         "durable":false,
-         "auto_delete":false,
-         "arguments":{
-
-         }
-      },
-      {
-         "name":"test_sddp",
-         "vhost":"/sddp/",
-         "durable":false,
-         "auto_delete":false,
-         "arguments":{
-
-         }
-      }
    ],
    "exchanges":[
-      {
-         "name":"exc.delta.feed",
-         "vhost":"/opta-messages/",
-         "type":"x-consistent-hash",
-         "durable":true,
-         "auto_delete":false,
-         "internal":false,
-         "arguments":{
-
-         }
-      },
       {
          "name":"exc.sddp.bridge",
          "vhost":"/sddp/",
@@ -179,25 +150,5 @@
       }
    ],
    "bindings":[
-      {
-         "source":"exc.delta.feed",
-         "vhost":"/opta-messages/",
-         "destination":"test",
-         "destination_type":"queue",
-         "routing_key":"1",
-         "arguments":{
-
-         }
-      },
-      {
-         "source":"exc.sddp.bridge",
-         "vhost":"/sddp/",
-         "destination":"test_sddp",
-         "destination_type":"queue",
-         "routing_key":"#",
-         "arguments":{
-
-         }
-      }
    ]
 }
